@@ -1,0 +1,40 @@
+<html>
+
+<b>Results for:</b> <i>{{ query }}</i><br><br><br>
+
+<form action="/link_stats/search" method="GET">
+	<input type="text" name="squery" value="{{ query }}" size="50"/>
+	<input type="submit" value="Search"/>
+</form>
+<br><br>
+
+<table border="1" cellpadding="4">
+<tr>
+	<th>URL</th>
+	<th>Share Count</th>
+	<th>Like Count</th>
+	<th>Comment Count</th>
+	<th>Click Count</th>
+	<th>Total Count</th>
+</tr>
+{% if results %}
+	<tr>
+		<td><a href="{{ results.normalized_url }}">{{ results.normalized_url }}</a></td>
+		<td>{{ results.share_count }}</td>
+		<td>{{ results.like_count }}</td>
+		<td>{{ results.comment_count }}</td>
+		<td>{{ results.click_count }}</td>
+		<td>{{ results.total_count }}</td>
+	</tr>
+{% else %}
+	<tr>
+		<td>{{ query }}</a>
+		<td colspan="5">No results found - Not a valid URL most likely!</td>
+	</tr>
+{% endif %}
+</table>
+<br><br>
+{% if use_chart %}
+	<img src="http://chart.apis.google.com/chart?cht=p&chs=350x150&chd=t:{{ chart.share_count }},{{ chart.like_count }},{{ chart.comment_count }},{{ chart.click_count }}&chl=Share Count|Like Count|Comment Count|Click Count"/>
+{% endif %}
+</html>

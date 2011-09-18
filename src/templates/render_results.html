@@ -1,0 +1,24 @@
+<html>
+
+You have {{links|length }} links!<br><br>
+
+<table border="1" cellpadding="4">
+<tr>
+	<th>URL:</th>
+	<th>Created:</th>
+	<th>Title:</th>
+	<th>Share Count</th>
+	<th>Like Count</th>
+	<th>Comment Count</th>
+	<th>Click Count</th>
+	<th>Total Count</th>
+</tr>
+{% for url in links %}
+	<tr>
+		<td><a href="{{ url }}">{{ url }}</a></td>
+		<td>{{ links.{{ url }} }}</td>		
+	</tr>
+{% endfor %}
+</table>
+<br><br>
+</html>
